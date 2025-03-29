@@ -5,6 +5,14 @@ VisualStudioVersion = 17.14.35906.104 d17.14
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetCoreIoT", "NetCoreIoT\NetCoreIoT.csproj", "{42804E52-11AF-4F9A-AAA7-616DE211A873}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetCoreIoT.Services", "NetCoreIoT.Services\NetCoreIoT.Services.csproj", "{70DF223E-D363-4F49-A096-B26A3273C0EC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetCoreIoT.Dal", "NetCoreIoT.Dal\NetCoreIoT.Dal.csproj", "{F6BC1669-7EF4-443C-A2C1-954014018B9B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetCoreIoT.Model", "NetCoreIoT.Model\NetCoreIoT.Model.csproj", "{1ED8F29D-146B-4DE5-B29A-710C66F47F2E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetCoreIoT.MQTTProcessor", "NetCoreIoT.MQTTProcessor\NetCoreIoT.MQTTProcessor.csproj", "{6BAC0E69-6A56-418A-9271-FD40F360F985}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +23,22 @@ Global
 		{42804E52-11AF-4F9A-AAA7-616DE211A873}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{42804E52-11AF-4F9A-AAA7-616DE211A873}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{42804E52-11AF-4F9A-AAA7-616DE211A873}.Release|Any CPU.Build.0 = Release|Any CPU
+		{70DF223E-D363-4F49-A096-B26A3273C0EC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{70DF223E-D363-4F49-A096-B26A3273C0EC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{70DF223E-D363-4F49-A096-B26A3273C0EC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{70DF223E-D363-4F49-A096-B26A3273C0EC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F6BC1669-7EF4-443C-A2C1-954014018B9B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F6BC1669-7EF4-443C-A2C1-954014018B9B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F6BC1669-7EF4-443C-A2C1-954014018B9B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F6BC1669-7EF4-443C-A2C1-954014018B9B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1ED8F29D-146B-4DE5-B29A-710C66F47F2E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1ED8F29D-146B-4DE5-B29A-710C66F47F2E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1ED8F29D-146B-4DE5-B29A-710C66F47F2E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1ED8F29D-146B-4DE5-B29A-710C66F47F2E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6BAC0E69-6A56-418A-9271-FD40F360F985}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6BAC0E69-6A56-418A-9271-FD40F360F985}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6BAC0E69-6A56-418A-9271-FD40F360F985}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6BAC0E69-6A56-418A-9271-FD40F360F985}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
