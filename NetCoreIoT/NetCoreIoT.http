@@ -1,0 +1,6 @@
+@NetCoreIoT_HostAddress = http://localhost:5140
+
+GET {{NetCoreIoT_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
