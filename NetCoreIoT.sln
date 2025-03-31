@@ -13,6 +13,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetCoreIoT.Model", "NetCore
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetCoreIoT.MQTTProcessor", "NetCoreIoT.MQTTProcessor\NetCoreIoT.MQTTProcessor.csproj", "{6BAC0E69-6A56-418A-9271-FD40F360F985}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetCoreIoT.BasicsConfig", "NetCoreIoT.BasicsConfig\NetCoreIoT.BasicsConfig.csproj", "{D7CEDA83-A0F1-42EA-8857-221BD3FFB969}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetCoreIoT.DB", "NetCoreIoT.DB\NetCoreIoT.DB.csproj", "{2613C054-41FD-4A94-990C-EC26DDD8FCDA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetCoreIoT.Common", "NetCoreIoT.Common\NetCoreIoT.Common.csproj", "{531EC27D-742B-44ED-81EC-86BC52368161}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +45,18 @@ Global
 		{6BAC0E69-6A56-418A-9271-FD40F360F985}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6BAC0E69-6A56-418A-9271-FD40F360F985}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6BAC0E69-6A56-418A-9271-FD40F360F985}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D7CEDA83-A0F1-42EA-8857-221BD3FFB969}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D7CEDA83-A0F1-42EA-8857-221BD3FFB969}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D7CEDA83-A0F1-42EA-8857-221BD3FFB969}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D7CEDA83-A0F1-42EA-8857-221BD3FFB969}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2613C054-41FD-4A94-990C-EC26DDD8FCDA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2613C054-41FD-4A94-990C-EC26DDD8FCDA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2613C054-41FD-4A94-990C-EC26DDD8FCDA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2613C054-41FD-4A94-990C-EC26DDD8FCDA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{531EC27D-742B-44ED-81EC-86BC52368161}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{531EC27D-742B-44ED-81EC-86BC52368161}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{531EC27D-742B-44ED-81EC-86BC52368161}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{531EC27D-742B-44ED-81EC-86BC52368161}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
