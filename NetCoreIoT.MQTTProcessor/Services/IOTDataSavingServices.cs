@@ -38,23 +38,45 @@ namespace NetCoreIoT.MQTTProcessor.Services
         }
 
         // 各个存储方法示例
-        private static Task SavePressureDataAsync(string equipment_id,PressureData data)
+        private static async Task SavePressureDataAsync(string equipment_id,PressureData data)
         {
-            // TODO: 这里写你实际的数据库插入代码，比如用MongoDB驱动、EF Core等
+            MongoConnect mongos = new MongoConnect()
+            {
+                dbName = $"IOT_MQTT_Broker_PressureData",
+                collectionName = equipment_id.ToUpper()
+            };
+            MongBase<PressureData> mong = new MongBase<PressureData>();
+
+            await mong.InsertAsync(mongos, data); ;
             Console.WriteLine($"保存PressureData，时间:{data.Timestamp}");
-            return Task.CompletedTask;
         }
 
-        private static Task SaveHumidityDataAsync(string equipment_id,HumidityData data)
+        private static async Task SaveHumidityDataAsync(string equipment_id,HumidityData data)
         {
+            MongoConnect mongos = new MongoConnect()
+            {
+                dbName = $"IOT_MQTT_Broker_HumidityData",
+                collectionName = equipment_id.ToUpper()
+            };
+            MongBase<HumidityData> mong = new MongBase<HumidityData>();
+
+            await mong.InsertAsync(mongos, data); ;
             Console.WriteLine($"保存HumidityData，时间:{data.Timestamp}");
-            return Task.CompletedTask;
+           // return Task.CompletedTask;
         }
 
-        private static Task SaveTemperatureDataAsync(string equipment_id,TemperatureData data)
+        private static async Task SaveTemperatureDataAsync(string equipment_id,TemperatureData data)
         {
+            MongoConnect mongos = new MongoConnect()
+            {
+                dbName = $"IOT_MQTT_Broker_TemperatureData",
+                collectionName = equipment_id.ToUpper()
+            };
+            MongBase<TemperatureData> mong = new MongBase<TemperatureData>();
+
+            await mong.InsertAsync(mongos, data); ;
             Console.WriteLine($"保存TemperatureData，时间:{data.Timestamp}");
-            return Task.CompletedTask;
+          //  return Task.CompletedTask;
         }
 
         private static async Task SaveElectricMeterDataAsync(string equipment_id,ElectricMeterData data)
@@ -66,8 +88,8 @@ namespace NetCoreIoT.MQTTProcessor.Services
             };
             MongBase<ElectricMeterData> mong = new MongBase<ElectricMeterData>();
            
+            await mong.InsertAsync(mongos, data); 
             Console.WriteLine($"保存ElectricMeterData，时间:{data.Timestamp}");
-            await mong.InsertAsync(mongos, data); ;
         }
 
     }

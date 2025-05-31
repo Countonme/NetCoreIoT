@@ -1,0 +1,31 @@
+﻿@page
+@model NetCoreIoT.Pages.IndexModel
+@{
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>实时温度数据</title>
+    <script src="~/js/signalr.min.js"></script>
+</head>
+<body>
+    <h2>实时温度数据显示</h2>
+    <div id="temperatureDisplay">等待数据...</div>
+
+    <script>
+        const connection = new signalR.HubConnectionBuilder()
+          .withUrl("/temperatureHub")
+          .build();
+
+        connection.on("ReceiveTemperature", (deviceId, temperature) => {
+          document.getElementById("temperatureDisplay").innerText =
+            `设备 ${deviceId} 当前温度：${temperature}°C`;
+        });
+
+        connection.start().then(() => {
+          console.log("SignalR 连接成功！");
+        }).catch(err => console.error(err.toString()));
+    </script>
+</body>
+</html>
