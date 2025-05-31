@@ -1,4 +1,5 @@
 ﻿using System.Linq.Expressions;
+using DnsClient.Internal;
 using MongoDB.Driver;
 using NetCoreIoT.BasicsConfig;
 using NetCoreIoT.Common;
@@ -11,14 +12,15 @@ namespace NetCoreIoT.DB.Mongod
         // 实例化 MongoDBHelper 类，指定文档类型
         private MongoDBHelperFactory factory = new MongoDBHelperFactory();
 
-        private LogManager _log = new LogManager();
         private readonly ConfigurationManager configuration = new ConfigurationManager();
         private readonly string _MasterConnectionString;
-
         public MongBase()
         {
             var config = configuration.GetConfigValue();
-            _MasterConnectionString = AESHelper.Decrypt(config.BasicsMasterHistoryConnectString, BasicsKeys.keys, BasicsKeys.iv);
+            // _MasterConnectionString = AESHelper.Decrypt(config.BasicsMasterHistoryConnectString, BasicsKeys.keys, BasicsKeys.iv);
+
+            _MasterConnectionString = config.BasicsMasterHistoryConnectString;
+
             // _SlaveConnectionString = AESHelper.Decrypt(config.BasicsSlavedbString, BasicsKeys.keys, BasicsKeys.iv);
             string str = string.Empty;
             _MasterConnectionString = _MasterConnectionString;
@@ -40,7 +42,7 @@ namespace NetCoreIoT.DB.Mongod
             }
             catch (Exception ex)
             {
-                _log.WriteErrorLog("MongodbInsertError:" + ex.Message);
+                throw ex;
             }
             return false;
         }
@@ -59,7 +61,8 @@ namespace NetCoreIoT.DB.Mongod
             }
             catch (Exception ex)
             {
-                _log.WriteErrorLog("MongodbInsertError:" + ex.Message);
+                throw ex;
+               // _log.WriteErrorLog("MongodbInsertError:" + ex.Message);
             }
             return false;
         }
@@ -79,7 +82,8 @@ namespace NetCoreIoT.DB.Mongod
             }
             catch (Exception ex)
             {
-                _log.WriteErrorLog("MongodbInsertError:" + ex.Message);
+                throw ex;
+              //  _log.WriteErrorLog("MongodbInsertError:" + ex.Message);
             }
             return false;
         }
@@ -95,6 +99,28 @@ namespace NetCoreIoT.DB.Mongod
             var mongoDBHelper = factory.GetMongoDBHelper<T>(_MasterConnectionString, connect.dbName, connect.collectionName);
             return mongoDBHelper.Find(filter).ToList();
         }
+
+        public async Task<List<T>> FindAsync(MongoConnect connect, Expression<Func<T, bool>> filter)
+        {
+            var mongoDBHelper = factory.GetMongoDBHelper<T>(_MasterConnectionString, connect.dbName, connect.collectionName);
+            return await mongoDBHelper.FindAsync(filter);
+        }
+
+
+
+        /// <summary>
+        /// 异步分页查询 + 获取总记录数
+        /// </summary>
+        public async Task<(List<T> items, long total)> FindWithPaginationAsync(MongoConnect connect, FilterDefinition<T> filter, int page = 1, int pageSize = 10, SortDefinition<T> sort = null)
+        {
+            // 获取集合（MongoDB 的 IMongoCollection<T>）
+            var collection = factory.GetMongoDBHelper<T>(_MasterConnectionString, connect.dbName, connect.collectionName);
+
+            var result = await collection.FindWithTotalAsync(filter, sort, page, pageSize);
+
+            return (result.Items, result.Total);
+        }
+
 
         /// <summary>
         /// 删除

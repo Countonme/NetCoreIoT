@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using NetCoreIoT.Model.ConfigData;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;

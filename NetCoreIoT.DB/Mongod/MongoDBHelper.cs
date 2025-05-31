@@ -141,6 +141,44 @@ namespace NetCoreIoT.DB.Mongod
             return await _collection.FindAsync(filter).Result.ToListAsync();
         }
 
+        public async Task<List<T>> FindAsync(FilterDefinition<T> filter, SortDefinition<T> sort = null, int? skip = null, int? limit = null)
+        {
+            var query = _collection.Find(filter);
+
+            if (sort != null)
+                query = query.Sort(sort);
+
+            if (skip.HasValue)
+                query = query.Skip(skip.Value);
+
+            if (limit.HasValue)
+                query = query.Limit(limit.Value);
+
+            return await query.ToListAsync();
+        }
+
+
+        public async Task<(List<T> Items, long Total)> FindWithTotalAsync(FilterDefinition<T> filter, SortDefinition<T> sort = null, int page = 1, int pageSize = 10)
+        {
+            var projection = Builders<T>.Projection.Exclude("_id"); // 排除 _id 字段
+
+            var skip = (page - 1) * pageSize;
+
+            // 构建查询
+            var query = _collection.Find(filter).Project<T>(projection);
+
+            if (sort != null)
+                query = query.Sort(sort);
+
+            // 获取当前页数据
+            var items = await query.Skip(skip).Limit(pageSize).ToListAsync();
+
+            // 获取总记录数
+            var total = await _collection.CountDocumentsAsync(filter);
+
+            return (items, total);
+        }
+
         /// <summary>
         ///
         /// </summary>
