@@ -1,6 +1,8 @@
 
 using Microsoft.AspNetCore.SignalR;
+using NetCoreIoT.Dal.User;
 using NetCoreIoT.Hubs;
+using NetCoreIoT.Services.User;
 
 namespace NetCoreIoT
 {
@@ -14,7 +16,9 @@ namespace NetCoreIoT
             // 添加 SignalR 服务
             builder.Services.AddSignalR();
             builder.Services.AddRazorPages(); // ← 必须有这句，否则 RazorPages 无法正常工作
-
+            builder.Services.AddSingleton<IUserServices, UserServices>();
+            builder.Services.AddSingleton<IDalUserMapper, DalUserMapper>();
+        
             builder.Services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();

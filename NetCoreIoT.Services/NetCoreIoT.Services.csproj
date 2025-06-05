@@ -6,4 +6,9 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\NetCoreIoT.Dal\NetCoreIoT.Dal.csproj" />
+    <ProjectReference Include="..\NetCoreIoT.Model\NetCoreIoT.Model.csproj" />
+  </ItemGroup>
+
 </Project>

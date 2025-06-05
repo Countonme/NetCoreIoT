@@ -18,5 +18,10 @@ namespace NetCoreIoT.Model.ConfigData
         /// Redis 的连接信息
         /// </summary>
         public string RedisConnectString { get; set; } = string.Empty;
+
+        /// <summary>
+        /// Mysql数据库连接字符串
+        /// </summary>
+        public string BasicsMasterdbString { get; set; } = string.Empty;
     }
 }

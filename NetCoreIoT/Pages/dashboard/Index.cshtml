@@ -1,0 +1,210 @@
+﻿@page
+@model NetCoreIoT.Pages.dashboard.IndexModel
+@{
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>设备仪表盘</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/layui@2.9.6/dist/css/layui.css" />
+    <script src="https://cdn.jsdelivr.net/npm/layui@2.9.6/dist/layui.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/echarts@5.5.0/dist/echarts.min.js"></script>
+    <style>
+        body {
+            background-color: #0f1b2a;
+            color: #e0e6ed;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        .dashboard-card {
+            padding: 20px;
+        }
+
+        .layui-card {
+            background: linear-gradient(145deg, #192a3c, #0f1b2a);
+            border: 1px solid #23354b;
+            border-radius: 10px;
+            box-shadow: 0 0 12px rgba(0, 255, 255, 0.1);
+            transition: transform 0.2s;
+        }
+
+            .layui-card:hover {
+                transform: translateY(-3px);
+                box-shadow: 0 0 18px rgba(0, 255, 255, 0.2);
+            }
+
+        .layui-card-header {
+            font-weight: bold;
+            color: #00c6ff;
+        }
+
+        .layui-card-body {
+            font-size: 20px;
+            color: #ffffff;
+        }
+
+        .chart-box {
+            width: 100%;
+            height: 300px;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="layui-container dashboard-card">
+        <div class="layui-row layui-col-space20">
+            <!-- 卡片区域 -->
+            <div class="layui-col-sm6 layui-col-md3">
+                <div class="layui-card">
+                    <div class="layui-card-header">总设备数</div>
+                    <div class="layui-card-body">128 台</div>
+                </div>
+            </div>
+            <div class="layui-col-sm6 layui-col-md3">
+                <div class="layui-card">
+                    <div class="layui-card-header">在线设备</div>
+                    <div class="layui-card-body">96 台</div>
+                </div>
+            </div>
+            <div class="layui-col-sm6 layui-col-md3">
+                <div class="layui-card">
+                    <div class="layui-card-header">离线设备</div>
+                    <div class="layui-card-body">32 台</div>
+                </div>
+            </div>
+            <div class="layui-col-sm6 layui-col-md3">
+                <div class="layui-card">
+                    <div class="layui-card-header">今日告警</div>
+                    <div class="layui-card-body">5 条</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="layui-row layui-col-space20" style="margin-top: 30px;">
+            <div class="layui-col-md6">
+                <div class="layui-card">
+                    <div class="layui-card-header">设备在线状态</div>
+                    <div class="layui-card-body">
+                        <div id="statusChart" class="chart-box"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="layui-col-md6">
+                <div class="layui-card">
+                    <div class="layui-card-header">设备类型分布</div>
+                    <div class="layui-card-body">
+                        <div id="typeChart" class="chart-box"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="layui-row layui-col-space20">
+            <div class="layui-col-md12">
+                <div class="layui-card">
+                    <div class="layui-card-header">近7日告警趋势</div>
+                    <div class="layui-card-body">
+                        <div id="alarmChart" class="chart-box" style="height: 350px;"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        layui.use(function(){
+          var statusChart = echarts.init(document.getElementById('statusChart'));
+          var typeChart = echarts.init(document.getElementById('typeChart'));
+          var alarmChart = echarts.init(document.getElementById('alarmChart'));
+
+          var commonColor = ['#00c6ff', '#0072ff', '#00ffcb', '#5e72eb', '#ff6b81'];
+
+          statusChart.setOption({
+            backgroundColor: 'transparent',
+            tooltip: { trigger: 'item' },
+            legend: { top: 'bottom', textStyle: { color: '#aaa' } },
+            series: [{
+              name: '设备状态',
+              type: 'pie',
+              radius: '60%',
+              data: [
+                { value: 96, name: '在线' },
+                { value: 32, name: '离线' }
+              ],
+              itemStyle: { borderColor: '#0f1b2a', borderWidth: 4 },
+              color: ['#00ffcb', '#ff6b81']
+            }]
+          });
+
+          typeChart.setOption({
+            backgroundColor: 'transparent',
+            tooltip: { trigger: 'item' },
+            legend: { show: false },
+            series: [{
+              name: '类型',
+              type: 'pie',
+              radius: ['40%', '70%'],
+              itemStyle: {
+                borderRadius: 10,
+                borderColor: '#0f1b2a',
+                borderWidth: 2
+              },
+              label: {
+                show: true,
+                color: '#ccc'
+              },
+              data: [
+                { value: 45, name: '传感器' },
+                { value: 30, name: '控制器' },
+                { value: 28, name: '摄像头' },
+                { value: 25, name: '执行器' }
+              ],
+              color: commonColor
+            }]
+          });
+
+          alarmChart.setOption({
+            backgroundColor: 'transparent',
+            tooltip: { trigger: 'axis' },
+            xAxis: {
+              type: 'category',
+              data: ['周一', '周二', '周三', '周四', '周五', '周六', '周日'],
+              axisLine: { lineStyle: { color: '#4a6fa5' } },
+              axisLabel: { color: '#ccc' }
+            },
+            yAxis: {
+              type: 'value',
+              axisLine: { lineStyle: { color: '#4a6fa5' } },
+              axisLabel: { color: '#ccc' },
+              splitLine: { lineStyle: { color: '#2e3c5a' } }
+            },
+            series: [{
+              name: '告警数',
+              data: [2, 1, 3, 2, 5, 1, 4],
+              type: 'line',
+              smooth: true,
+              lineStyle: { color: '#00c6ff' },
+              areaStyle: {
+                color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+                  { offset: 0, color: '#00c6ff88' },
+                  { offset: 1, color: '#0f1b2a00' }
+                ])
+              },
+              symbolSize: 8,
+              itemStyle: { color: '#00ffcb' }
+            }]
+          });
+
+          window.addEventListener('resize', function () {
+            statusChart.resize();
+            typeChart.resize();
+            alarmChart.resize();
+          });
+        });
+    </script>
+
+</body>
+</html>
