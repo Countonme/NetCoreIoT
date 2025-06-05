@@ -9,109 +9,53 @@
     <title>IoT管理系统 - 登录</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link href="~/lib/layui/css/layui.css" rel="stylesheet" />
-    <style>
-        * {
-            box-sizing: border-box;
-        }
-
-        body, html {
-            margin: 0;
-            padding: 0;
-            height: 100%;
-            font-family: "微软雅黑", Arial, sans-serif;
-            background: linear-gradient(135deg, #4a90e2, #9013fe);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .login-container {
-            background: #fff;
-            border-radius: 12px;
-            width: 360px;
-            padding: 40px 35px 50px;
-            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
-            text-align: center;
-            position: relative;
-        }
-
-        .login-title {
-            font-size: 26px;
-            font-weight: 700;
-            color: #333;
-            margin-bottom: 40px;
-            letter-spacing: 1.5px;
-        }
-
-        .layui-form-item {
-            position: relative;
-            margin-bottom: 25px;
-        }
-            /* 图标 */
-            .layui-form-item i.layui-icon {
-                position: absolute;
-                left: 10px;
-                top: 50%;
-                transform: translateY(-50%);
-                color: #4a90e2;
-                font-size: 18px;
-            }
-        /* 输入框 */
-        .layui-input {
-            padding-left: 40px !important;
-            height: 44px;
-            font-size: 16px;
-            border-radius: 6px;
-            border: 1.8px solid #e0e6f8;
-            transition: border-color 0.3s;
-        }
-
-            .layui-input:focus {
-                border-color: #4a90e2 !important;
-                box-shadow: 0 0 5px rgba(74, 144, 226, 0.7);
-            }
-        /* 按钮 */
-        .layui-btn {
-            background: linear-gradient(90deg, #4a90e2, #9013fe);
-            border: none;
-            border-radius: 6px;
-            height: 45px;
-            font-size: 17px;
-            font-weight: 600;
-            letter-spacing: 1px;
-            box-shadow: 0 8px 15px rgba(74, 144, 226, 0.3);
-            transition: background 0.3s ease;
-        }
-
-            .layui-btn:hover {
-                background: linear-gradient(90deg, #3b79ce, #6e0ecc);
-            }
-        /* 取消默认表单边距 */
-        form.layui-form {
-            margin-bottom: 0;
-        }
-    </style>
+    <link href="~/css/login/login.css" rel="stylesheet" />
 </head>
 <body>
+    <div id="bg-slideshow"></div>
+    <div id="particles-js"></div>
+    <div class="overlay"></div>
 
     <div class="login-container">
-        <div class="login-title">IoT管理系统 登录</div>
-        <form class="layui-form" id="loginForm" lay-filter="loginForm">
-            <div class="layui-form-item">
-                <i class="layui-icon layui-icon-username"></i>
-                <input type="text" name="username" required lay-verify="required" placeholder="请输入用户名" autocomplete="off" class="layui-input" />
+        <div class="login-left">
+            IOT 智能设备平台
+        </div>
+        <div class="login-right">
+            <h2>用户登录</h2>
+            <form class="layui-form" method="post" action="/Login">
+                <div class="layui-form-item">
+
+                    <div class="layui-input-wrap">
+                        <div class="layui-input-prefix">
+                            <i class="layui-icon layui-icon-username"></i>
+                        </div>
+                        <input type="text" name="username" required lay-verify="required" placeholder="请输入用户名" autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <div class="layui-input-wrap">
+                        <div class="layui-input-prefix">
+                            <i class="layui-icon layui-icon-password"></i>
+                        </div>
+                        <input type="password" name="password" required lay-verify="required" placeholder="请输入密码" autocomplete="off" class="layui-input" lay-affix="eye">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <input type="checkbox" name="remember" lay-skin="primary" title="记住我">
+                </div>
+                <div class="layui-form-item">
+                    <button class="layui-btn layui-btn-blue" lay-submit lay-filter="submitLogin">登 录</button>
+                </div>
+            </form>
+            <div class="form-footer">
+                © 2025  IoT Platform
             </div>
-            <div class="layui-form-item">
-                <i class="layui-icon layui-icon-password"></i>
-                <input type="password" name="password" required lay-verify="required" placeholder="请输入密码" autocomplete="off" class="layui-input" lay-affix="eye" />
-            </div>
-            <div class="layui-form-item">
-                <button class="layui-btn layui-btn-fluid" lay-submit lay-filter="submitLogin">登 录</button>
-            </div>
-        </form>
+        </div>
     </div>
+
     <script src="~/lib/layui/layui.js"></script>
     <script src="~/lib/lay-config.js"></script>
+    <script src="~/js/particles/particles.min.js"></script>
     <script src="~/js/login/login.js"></script>
 
 

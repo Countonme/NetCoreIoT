@@ -1,0 +1,133 @@
+﻿* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+    font-family: 'Segoe UI', sans-serif;
+    /* background: #000; */
+    overflow: hidden;
+}
+
+#bg-slideshow {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    transition: background-image 1s ease-in-out;
+    z-index: -3;
+}
+
+#particles-js {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    z-index: -2;
+}
+
+.overlay {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,30,0.6);
+    backdrop-filter: blur(4px);
+    z-index: -1;
+}
+
+.login-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    width: 900px;
+    max-width: 95%;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 0 30px rgba(0, 255, 255, 0.25);
+    background: rgba(255,255,255,0.04);
+    backdrop-filter: blur(12px);
+    animation: fadeIn 1s ease;
+}
+
+.login-left {
+    flex: 1;
+    background: url('images/login-left.jpg') center center / cover no-repeat;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #00c8ff;
+    font-size: 28px;
+    font-weight: bold;
+    text-shadow: 0 0 10px #00f0ff80;
+    padding: 40px;
+}
+
+.login-right {
+    flex: 1;
+    padding: 40px 30px;
+    background: rgba(255,255,255,0.02);
+}
+
+    .login-right h2 {
+        text-align: center;
+        font-size: 24px;
+        color: #00dfff;
+        margin-bottom: 30px;
+    }
+
+.layui-input {
+    background: rgba(255,255,255,0.08);
+    border: 1px solid #00c8ff44;
+    color: #fff;
+}
+
+    .layui-input::placeholder {
+        color: #aaa;
+    }
+
+.layui-btn-blue {
+    background: linear-gradient(135deg, #00c8ff, #0066ff);
+    border: none;
+    color: white;
+    width: 100%;
+    font-size: 16px;
+    margin-top: 10px;
+}
+
+    .layui-btn-blue:hover {
+        box-shadow: 0 0 12px #00c8ff;
+    }
+
+.form-footer {
+    text-align: center;
+    font-size: 12px;
+    color: #ccc;
+    margin-top: 25px;
+}
+
+@media screen and (max-width: 768px) {
+    .login-container {
+        flex-direction: column;
+    }
+
+    .login-left {
+        height: 150px;
+        font-size: 22px;
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translate(-50%, -60%);
+    }
+
+    to {
+        opacity: 1;
+        transform: translate(-50%, -50%);
+    }
+}

@@ -3,6 +3,47 @@
         request = layui.request,
         layer = layui.layer;
 
+    debugger
+    // 背景轮播图
+    const bgImages = [
+        '../../../images/login/login-bg1.jpg',
+        '../../../images/login/login-bg2.jpg',
+        '../../../images/login/login-bg3.jpg'
+    ];
+    let bgIndex = 0;
+    const bgEl = document.getElementById('bg-slideshow');
+    function updateBackground() {
+        bgEl.style.backgroundImage = `url(${bgImages[bgIndex]})`;
+        bgIndex = (bgIndex + 1) % bgImages.length;
+    }
+    updateBackground();
+    setInterval(updateBackground, 8000);
+
+    // 粒子初始化
+    particlesJS('particles-js', {
+        particles: {
+            number: { value: 60 },
+            color: { value: "#00c8ff" },
+            shape: { type: "circle" },
+            opacity: { value: 0.5 },
+            size: { value: 3 },
+            line_linked: {
+                enable: true,
+                distance: 120,
+                color: "#00c8ff",
+                opacity: 0.4,
+                width: 1
+            },
+            move: { enable: true, speed: 2 }
+        },
+        interactivity: {
+            detect_on: "canvas",
+            events: { onhover: { enable: true, mode: "grab" } },
+            modes: { grab: { distance: 140, line_linked: { opacity: 1 } } }
+        },
+        retina_detect: true
+    });
+
     form.on('submit(submitLogin)', function (data) {
         var field = data.field;
         //请求登入接口
