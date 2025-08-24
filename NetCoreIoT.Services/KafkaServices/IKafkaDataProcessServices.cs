@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace NetCoreIoT.Services.KafkaServices
 {
-    internal interface IKafkaDataProcessServices
+    public interface IKafkaDataProcessServices
     {
     }
 }
