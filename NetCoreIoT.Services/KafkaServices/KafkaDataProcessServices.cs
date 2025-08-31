@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace NetCoreIoT.Services.KafkaServices
 {
-    internal class KafkaDataProcessServices
+    public class KafkaDataProcessServices
     {
+        public KafkaDataProcessServices() { }
     }
 }
